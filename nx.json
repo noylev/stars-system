@@ -1,0 +1,28 @@
+{
+  "npmScope": "stars-system",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "stars-system": {
+      "tags": []
+    },
+    "stars-system-e2e": {
+      "tags": [],
+      "implicitDependencies": ["stars-system"]
+    },
+    "api": {
+      "tags": []
+    },
+    "api-interfaces": {
+      "tags": []
+    }
+  }
+}
