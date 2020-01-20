@@ -23,6 +23,13 @@
     },
     "api-interfaces": {
       "tags": []
+    },
+    "stars-admin": {
+      "tags": []
+    },
+    "stars-admin-e2e": {
+      "tags": [],
+      "implicitDependencies": ["stars-admin"]
     }
   }
 }

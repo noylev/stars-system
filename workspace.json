@@ -192,6 +192,114 @@
           }
         }
       }
+    },
+    "stars-admin": {
+      "root": "apps/stars-admin",
+      "sourceRoot": "apps/stars-admin/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/stars-admin",
+            "index": "apps/stars-admin/src/index.html",
+            "main": "apps/stars-admin/src/main.tsx",
+            "polyfills": "apps/stars-admin/src/polyfills.ts",
+            "tsConfig": "apps/stars-admin/tsconfig.app.json",
+            "assets": [
+              "apps/stars-admin/src/favicon.ico",
+              "apps/stars-admin/src/assets"
+            ],
+            "styles": ["apps/stars-admin/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/stars-admin/src/environments/environment.ts",
+                  "with": "apps/stars-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "stars-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "stars-admin:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/stars-admin/.eslintrc",
+            "tsConfig": [
+              "apps/stars-admin/tsconfig.app.json",
+              "apps/stars-admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/stars-admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/stars-admin/jest.config.js",
+            "tsConfig": "apps/stars-admin/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "stars-admin-e2e": {
+      "root": "apps/stars-admin-e2e",
+      "sourceRoot": "apps/stars-admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/stars-admin-e2e/cypress.json",
+            "tsConfig": "apps/stars-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "stars-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "stars-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/stars-admin-e2e/.eslintrc",
+            "tsConfig": ["apps/stars-admin-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/stars-admin-e2e/**"]
+          }
+        }
+      }
     }
   },
   "cli": {
